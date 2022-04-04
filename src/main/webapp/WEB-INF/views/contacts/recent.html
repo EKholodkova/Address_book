@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recent contacts</title>
+</head>
+<body>
+<th:block th:each="contact : ${contacts}">
+    <li>
+        <a th:href="@{/contacts/{id}(id=${contact.getId()})}"
+           th:text="${contact.getName() + ', ' + contact.getPhone()}">contact</a>
+    </li>
+</th:block>
+</body>
+</html>

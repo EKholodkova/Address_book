@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All contacts</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/contacts/result}">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name"/>
+    <input type="submit" value="Search">
+</form>
+
+<br/>
+<br/>
+
+<th:block th:each="contactItem : ${contacts}">
+    <ul th:if="${!contactItem.value.isEmpty()}">
+        <li>
+            <p th:text="${contactItem.key}"/>
+            <th:block th:each="contact : ${contactItem.value}">
+                <a th:href="@{/contacts/{id}(id=${contact.getId()})}"
+                   th:text="${contact.getName() + ', ' + contact.getPhone()}">contact</a><br>
+            </th:block>
+        </li>
+    </ul>
+</th:block>
+
+<br/>
+<br/>
+
+<a href="contacts/new">New contact</a>
+
+<br/>
+<br/>
+
+<a href="contacts/recent">Recent contacts</a>
+
+<br/>
+<br/>
+
+<a href="/contacts/popular">Popular contacts</a>
+
+<br/>
+<br/>
+
+<a href="/contacts/favourite">Favourite contacts</a>
+
+</body>
+</html>

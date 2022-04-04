@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+</head>
+<body>
+<p th:text="${contact.getName()}">VALUE</p>
+<p th:text="${contact.getPhone()}">VALUE</p>
+<br/>
+<br/>
+<a th:href="@{/contacts/{id}/edit(id=${contact.getId()})}">Update contact</a>
+<br/>
+<br/>
+<form th:method="POST" th:action="@{/contacts/{id}(id=${contact.getId()})}">
+    <input type="submit" value="Mark as favourite">
+</form>
+<br/>
+<br/>
+<form th:method="DELETE" th:action="@{/contacts/{id}(id=${contact.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>
